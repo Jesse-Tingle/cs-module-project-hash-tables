@@ -149,7 +149,15 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        old_bucket = self.buckets
+        loadFactor = self.get_load_factor()
+        if loadFactor > 0.7:
+            self.buckets = [None] * new_capacity
+        for entry in old_bucket:
+            currentNode = entry
+            while currentNode is not None:
+                self.put(currentNode.key, currentNode.value)
+                currentNode = currentNode.next
 
 
 if __name__ == "__main__":
